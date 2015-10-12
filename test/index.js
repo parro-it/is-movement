@@ -1,7 +1,19 @@
 const test = require('tape-async');
 const isMovement = require('..');
 
-test('add details files', function *(t) {
-  const result = yield isMovement();
-  t.equal(result, 42);
+const movementKeys = {
+  END: 35,
+  HOME: 36,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40
+};
+
+Object.keys(movementKeys).forEach(movementKey => {
+  test(movementKey + ' is movement key', t => {
+    t.ok(isMovement({
+      which: movementKeys[movementKey]
+    }));
+  });
 });
