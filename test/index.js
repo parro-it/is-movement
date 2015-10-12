@@ -17,3 +17,21 @@ Object.keys(movementKeys).forEach(movementKey => {
     }));
   });
 });
+
+
+if (global.collider) {
+  global.createInput = () => {
+    const inp = document.createElement('input');
+    document.body.appendChild(inp);
+    inp.addEventListener('keydown', e => {
+      console.log(isMovement(e)); // eslint-disable-line
+    });
+
+    global.collider.open();
+  };
+
+  test.syncTest('quit test environment.', t => {
+    t.ok(true, 'quit');
+    setTimeout(() => global.collider.quit(), 100);
+  });
+}
